@@ -49,7 +49,7 @@ func handleRequest(rl *RateLimiter) http.HandlerFunc {
 		dec.DisallowUnknownFields()
 		if err := dec.Decode(&body); err != nil {
 			writeJSON(w, http.StatusBadRequest, errorResponse{
-				Error:   "invalid_json",
+				Error:   "400 Bad Request - invalid_json",
 				Message: "Request body must be valid JSON with user_id and payload fields.",
 			})
 			return
@@ -57,7 +57,7 @@ func handleRequest(rl *RateLimiter) http.HandlerFunc {
 
 		if body.UserID == "" {
 			writeJSON(w, http.StatusBadRequest, errorResponse{
-				Error:   "missing_user_id",
+				Error:   "400 Bad Request - missing_user_id",
 				Message: "user_id is required and must be a non-empty string.",
 			})
 			return
@@ -65,7 +65,7 @@ func handleRequest(rl *RateLimiter) http.HandlerFunc {
 
 		if len(body.Payload) == 0 || string(body.Payload) == "null" {
 			writeJSON(w, http.StatusBadRequest, errorResponse{
-				Error:   "missing_payload",
+				Error:   "400 Bad Request - missing_payload",
 				Message: "payload is required and must be a valid JSON value.",
 			})
 			return
@@ -73,7 +73,7 @@ func handleRequest(rl *RateLimiter) http.HandlerFunc {
 
 		if !rl.Allow(body.UserID) {
 			writeJSON(w, http.StatusTooManyRequests, errorResponse{
-				Error:   "rate_limit_exceeded",
+				Error:   "429 Too Many Requests - rate_limit_exceeded",
 				Message: "Rate limit exceeded: maximum 5 requests per user per 1-minute rolling window.",
 			})
 			return
@@ -82,7 +82,7 @@ func handleRequest(rl *RateLimiter) http.HandlerFunc {
 		writeJSON(w, http.StatusCreated, acceptedResponse{
 			Status:  "accepted",
 			UserID:  body.UserID,
-			Message: "Request accepted successfully.",
+			Message: "201 created - Request accepted successfully.",
 		})
 	}
 }

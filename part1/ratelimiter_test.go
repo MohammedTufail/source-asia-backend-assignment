@@ -10,9 +10,7 @@ import (
 	"time"
 )
 
-// ---------------------------------------------------------------------------
 // Rate limiter unit tests
-// ---------------------------------------------------------------------------
 
 func TestRateLimiter_AllowsUpToFive(t *testing.T) {
 	rl := NewRateLimiter()
@@ -73,9 +71,7 @@ func TestRateLimiter_StatsRejectedCumulative(t *testing.T) {
 	}
 }
 
-// ---------------------------------------------------------------------------
 // HTTP handler tests
-// ---------------------------------------------------------------------------
 
 func newTestServer() (*httptest.Server, *RateLimiter) {
 	rl := NewRateLimiter()
