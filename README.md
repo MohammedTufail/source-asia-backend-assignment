@@ -39,7 +39,9 @@ source-asia-assignment/
 │   ├── ratelimiter.go              Rolling-window rate limiter (concurrency-safe)
 │   ├── handlers.go                 HTTP handlers: POST /request, GET /stats
 │   └── ratelimiter_test.go         13 tests — unit, integration, concurrency
-│
+│   └── testing_log_part1.md
+|   └── video.mp4
+|
 └── part2/                          Part 2 — Product Catalog API  (port 8082)
     ├── main.go                     Entry point; wires the server together
     ├── part2_test.go               25 tests — validator, store, HTTP, perf, concurrency
@@ -51,8 +53,12 @@ source-asia-assignment/
     │   ├── helpers.go              Shared writeJSON() + error envelope
     │   ├── products.go             POST /products · GET /products · GET /products/{id}
     │   └── media.go                POST /products/{id}/media
-    └── validator/
-        └── validator.go            URL scheme/length/structure checks; array-size limits
+    |── validator/
+    |   └── validator.go            URL scheme/length/structure checks; array-size limits
+    |── testing_log_part1.md
+    └── video.mp4
+
+
 ```
 
 ---
