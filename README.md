@@ -55,7 +55,7 @@ source-asia-assignment/
     │   └── media.go                POST /products/{id}/media
     |── validator/
     |   └── validator.go            URL scheme/length/structure checks; array-size limits
-    |── testing_log_part1.md
+    |── testing_log_part2.md
     └── video.mp4
 
 
